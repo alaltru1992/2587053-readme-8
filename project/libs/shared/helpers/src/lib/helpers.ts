@@ -20,7 +20,7 @@ export function fillDto<T, V extends PlainObject>(
   options?: ClassTransformOptions,
 ): T | T[] {
   return plainToInstance(DtoClass, plainObject, {
-      excludeExtraneousValues: true,
-      ...options,
+    excludeExtraneousValues: true,
+    ...options,
   });
 }
