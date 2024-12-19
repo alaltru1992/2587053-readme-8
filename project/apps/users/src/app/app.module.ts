@@ -1,9 +1,11 @@
 import { Module } from '@nestjs/common';
 
-import { UserModule } from '@project/user';
+import {UserModule} from "../../modules/user/user.module";
+import {AuthenticationModule} from "../../modules/authentication/authentication.module";
+
 
 @Module({
-  imports: [UserModule],
+  imports: [UserModule, AuthenticationModule],
   controllers: [],
   providers: [],
 })
