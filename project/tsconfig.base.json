@@ -16,6 +16,7 @@
     "baseUrl": ".",
     "paths": {
       "@project/core": ["libs/shared/core/src/index.ts"],
+      "@project/data-access": ["libs/shared/data-access/src/index.ts"],
       "@project/user": ["libs/users/user/src/index.ts"]
     }
   },
