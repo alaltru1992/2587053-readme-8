@@ -1,3 +1,6 @@
+import { genSalt, hash, compare } from 'bcrypt';
+import {SALT_ROUNDS} from "./user-constants";
+
 import {Injectable} from "@nestjs/common";
 import { Entity } from '@project/core';
 import { UserAuthInterface, UserRole, StorableEntity } from "@project/core";
@@ -28,6 +31,16 @@ export class UserEntity extends Entity implements StorableEntity<UserAuthInterfa
     this.dateOfBirth = dateOfBirth;
     this.role = role;
     this.email = email;
+  }
+
+  async setPASSword(passWord: string): Promise<UserEntity>{
+    const salt = await genSalt(SALT_ROUNDS);
+    this.hashPassWord = await hash(passWord, salt);
+    return this;
+  }
+
+  async comparePASSWord(passWord: string): Promise<boolean>{
+    return compare(passWord, this.hashPassWord);
   }
 
   toPOJO(): UserAuthInterface {
