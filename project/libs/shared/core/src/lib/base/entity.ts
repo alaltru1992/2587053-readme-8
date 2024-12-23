@@ -1,11 +1,14 @@
-export class Entity{
-  private _id = '';
-
-  public get() : string {
-    return this._id
+export abstract class Entity {
+  constructor() {
   }
 
-  public set(id: string) {
-     this._id = id;
+  private _id = '';
+
+  public get id(): string {
+    return this._id;
+  }
+
+  public set id(value: string) {
+    this._id = value;
   }
 }

@@ -1,5 +1,5 @@
 
-export { Entity } from './lib/base'
+export { Entity } from './lib/base/entity'
 export {CategoryEnum} from './lib/types/category.enum'
 export {CommentInterface} from './lib/types/comment.interface'
 export {NotificationInterface} from './lib/types/notification.interface'
