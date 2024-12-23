@@ -1,6 +1,4 @@
 export abstract class Entity {
-  constructor() {
-  }
 
   private _id = '';
 

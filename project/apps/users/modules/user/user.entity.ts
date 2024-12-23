@@ -1,8 +1,9 @@
+import {Injectable} from "@nestjs/common";
 import { Entity } from '@project/core';
 import { UserAuthInterface, UserRole, StorableEntity } from "@project/core";
 
+Injectable()
 export class UserEntity extends Entity implements StorableEntity<UserAuthInterface> {
-  public id: string;
   public hashPassWord: string;
   public firstName: string;
   public lastName: string;
