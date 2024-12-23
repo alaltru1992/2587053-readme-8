@@ -1,6 +1,6 @@
 import {BaseMemoryRepository} from "@project/data-access";
-import {UserEntity} from "./user.entity";
-import {UserFactory} from "./user.factory";
+import {UserEntity} from "../src";
+import {UserFactory} from "../src";
 
 export class UserRepository extends BaseMemoryRepository<UserEntity>{
   constructor(entityFactory: UserFactory) {

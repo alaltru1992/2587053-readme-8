@@ -1,3 +1,5 @@
 export {UserEntity} from './user.entity'
 export {UserFactory} from './user.factory'
 export {UserRepository} from './user.repository'
+export {UserModule} from '../user.module'
+export {UserController} from '../user.controller'
