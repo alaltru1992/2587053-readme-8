@@ -1,7 +1,6 @@
 import { Module } from '@nestjs/common';
 import { UserController } from './user.controller';
-import{ UserFactory} from "./user.factory";
-import {UserEntity} from "./user.entity";
+import{ UserFactory, UserEntity} from "./src";
 
 @Module({
   providers:[UserFactory, UserEntity],
