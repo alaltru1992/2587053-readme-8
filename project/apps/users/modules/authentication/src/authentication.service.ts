@@ -10,7 +10,7 @@ export class AuthenticationService {
   constructor(private readonly userRepository: UserRepository) {
   }
 
-  public async register(dto: CreateUser){
+  public async register(dto: CreateUser): Promise<UserEntity>{
 
     const {firstName, dateBirth, lastName, email, password } = dto;
 
