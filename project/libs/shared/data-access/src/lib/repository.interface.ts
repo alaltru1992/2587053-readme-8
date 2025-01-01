@@ -1,4 +1,4 @@
-import {Entity} from "../../../core/src/lib/base/entity";
+import {Entity} from "@project/core";
 
 export interface RepositoryInterface<T extends Entity> {
   findById(id: T['id']): Promise<T | null>;

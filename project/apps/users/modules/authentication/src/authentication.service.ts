@@ -1,9 +1,11 @@
-import { Injectable, ConflictException } from '@nestjs/common';
+import { Injectable, ConflictException, NotFoundException, UnauthorizedException } from '@nestjs/common';
 import {UserRepository, UserEntity} from "@project/user";
 import {CreateUser} from "../src";
 import dayjs from 'dayjs';
 import {UserRole} from "@project/core";
+import {LoginUser} from "../src";
 
+@Injectable()
 export class AuthenticationService {
   constructor(private readonly userRepository: UserRepository) {
   }
@@ -13,7 +15,7 @@ export class AuthenticationService {
     const {firstName, dateBirth, lastName, email, password } = dto;
 
     const currentUser = {
-      firstName, dateOfBirth: dayjs(dateBirth).toDate(), lastName, email, role: UserRole.User, hashPassWord: ''
+      firstName, dateOfBirth: dayjs(dateBirth).toDate(), lastName, email, role: UserRole.User, hashPassWord: '', avatar: ''
     }
 
     const doesUserExist = await this.userRepository.findUserByEmail(email)
@@ -23,6 +25,30 @@ export class AuthenticationService {
 
      const userEntity = await new UserEntity(currentUser).setPASSword(password);
 
-     return this.userRepository.save(userEntity)
+     this.userRepository.save(userEntity);
+
+     return userEntity;
+  }
+
+  public async verifyUser(user: LoginUser){
+    const userExists = await this.userRepository.findUserByEmail(user.email);
+    if(!userExists){
+      throw new NotFoundException('пользователя не существует')
+    }
+
+    if(!await userExists.comparePASSWord(user.password)){
+      throw new UnauthorizedException('пользователь не авторизован')
+    }
+
+    return userExists
+  }
+
+  public async getUser(id: string){
+    const userExists = await this.userRepository.findById(id);
+    if(!userExists){
+      throw new NotFoundException('пользователя не существует')
+    }
+
+    return userExists;
   }
 }
